@@ -12,6 +12,7 @@ import Vue from './assets/img/vue.svg'
 import Github from './assets/img/github.svg'
 import Linkedin from './assets/img/linkedin.svg'
 import Instagram from './assets/img/instagram.svg'
+import { Folder, ExternalLink, MoveRight } from "lucide-react"
 
 const App = () => {
   const [data, setData] = useState({
@@ -34,15 +35,16 @@ const App = () => {
           {
             job: 'Frontend Developer',
             company: 'Gramedia Edukasi',
-            start: 'February 2022',
+            start: 'January 2023',
             end: 'Now',
             jobdesc: [
-              'Maintained and improvement no code platform',
-              'Collaborate with design, product and backend teams to develop new features',
+              'Design UI / UX',
+              'Maintained and improvement existing platform',
+              'Collaborate with product manager and backend teams to develop new features',
               'Consume API'
             ],
             tech: [
-              'Vue JS', 'SCSS', 'Axios'
+              'React JS', 'Next JS', 'Tailwind CSS', 'Redux', 'Figma'
             ]
           }
         ] 
@@ -54,15 +56,21 @@ const App = () => {
           {
             job: 'Frontend Developer',
             company: 'Kompas Gramedia',
-            start: 'February 2022',
-            end: 'Now',
+            start: 'April 2021',
+            end: 'December 2022',
             jobdesc: [
-              'Maintained and improvement no code platform',
-              'Collaborate with design, product and backend teams to develop new features',
-              'Consume API'
+              'Maintained existing platform Gramedia Digital',
+              'Design UI/UX for Gramedia Digital',
+              'Revamp website Gramedia Digital',
+              'Revamp main website Gramedia',
+              'Create CMS to handle all packing orders from website Gramedia',
+              'Create platform Web Reader to access all books from Gramedia',
+              'Collaborate with product and backend teams to develop new features',
+              'Consume API',
+              'Create Unit Testing Components'
             ],
             tech: [
-              'Vue JS', 'SCSS', 'Axios'
+              'Vue JS', 'React JS', 'Nuxt JS', 'Next JS', 'SCSS', 'Tailwind CSS', 'React Query', 'Redux', , 'Axios', 'Jest', 'Figma'
             ]
           }
         ] 
@@ -72,17 +80,20 @@ const App = () => {
         title:'Edgeprop Singapore',
         desc: [
           {
-            job: 'Frontend Developer',
-            start: 'February 2022',
+            job: 'Software Engineer',
+            start: 'September 2019',
             company: 'Edgeprop Singapore',
-            end: 'Now',
+            end: 'April 2021',
             jobdesc: [
-              'Maintained and improvement no code platform',
+              'Maintained existing platform',
               'Collaborate with design, product and backend teams to develop new features',
+              'Create feature Market Trends for knowing trend property in Singapore',
+              'Create feature property research to know detail of some property',
+              'Create streaming platform for property guide',
               'Consume API'
             ],
             tech: [
-              'Vue JS', 'SCSS', 'Axios'
+              'Next JS', 'React JS', 'Axios', 'Drupal', 'Node JS', 'PHP', 'Laravel'
             ]
           }
         ] 
@@ -96,6 +107,7 @@ const App = () => {
   const experience = createRef<any>()
   const projects = createRef<any>()
   const contact = createRef<any>()
+  
 
   const setActive = (name: string, index:number) => {
     setData(prevState => ({
@@ -130,7 +142,7 @@ const App = () => {
           {data.arr.map(({name, id, title}, index) => (
             <li key={id}>
               <span 
-                className={data.selected === name ? 'text-gradient font-semibold' : 'text-gradient-hover'}
+                className={(data.selected === name) ? 'text-gradient font-semibold' : 'text-gradient-hover'}
                 onClick={() => setActive(name, index)}
               >
                 {title}
@@ -147,7 +159,7 @@ const App = () => {
           
         </div>
       </nav>
-      <main className="mt-32 container mx-auto">
+      <main className="mt-32 container mx-auto px-5" id='main-root'>
         <section ref={aboutMe} className="section">
           <div className="mb-10">
             <h2 className="text-3xl text-gradient">About Me</h2>
@@ -204,6 +216,7 @@ const App = () => {
             </div>
           </div>
         </section>
+        
         <div ref={experience} className="section">
           <div className="mb-8 text-center">
             <h2 className="text-3xl text-gradient">Experience</h2>
@@ -230,12 +243,12 @@ const App = () => {
                       <p className="text-lg font-semibold text-slate-800">{job}</p>
                       <p className="text-base text-gradient my-1">{company}</p>
                       <p className="text-sm font-light text-slate-700 tracking-wide">{start} - {end}</p>
-                      <ul className="mt-6 text-sm leading-5 tracking-wide text-slate-700 space-y-4">
+                      <ul className="mt-6 text-sm leading-5 tracking-wide text-slate-700 space-y-4 text-ellipsis overflow-hidden max-w-[550px] leading-10">
                         {jobdesc.map((item) => (
-                          <li>{item}</li>
+                          <li className="before:content-['\25b9'] before:pr-4 before:text-violet-600 before:text-xl">{item}</li>
                         ))}
                       </ul>
-                      <div className="text-slate-700 mt-8">{tech.join(', ')}</div>
+                      <div className="text-gradient mt-8 text-ellipsis overflow-hidden max-w-[550px] leading-8">{tech.join(', ')}</div>
                     </div>
                   ))
                 })}
@@ -243,11 +256,149 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div ref={projects} className="min-h-[500px] pt-20">
-            projects
+        <div ref={projects} className="section mx-20">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl text-gradient">Projects</h2>
+            <p className="text-base pt-4 text-slate-700">A few projects I've been working on with recently</p>
+          </div>
+            <div className="w-full grid gap-5 grid-cols-4">
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              {/* example */}
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              <div className="bg-white rounded-xl p-5 shadow-lg shadow-slate-200 h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <Folder className="text-teal-600 w-10 h-auto" stroke="currentColor"/>
+                    <ExternalLink className="text-slate-400 w-5 h-auto" stroke="currentColor"/>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">Gramedia Edukasi</p>
+                  <p className="text-slate-600 text-sm tracking-wide leading-relaxed my-4">
+                    Application for the company internal needs. Such as attendance, project & task management, etc
+                  </p>
+                </div>
+                <p className="text-sm font-light text-teal-600 tracking-wide">Tailwind CSS, Vue 3, Typescript, Axios, Pinia</p>
+              </div>
+              
+            </div>
         </div>
-        <div ref={contact} className="min-h-[500px] pt-20">
-            contact
+        <div ref={contact} className="section">
+          <div className="mb-8 text-center">
+            <h2 className="text-5xl text-gradient h-20">Send me a message!</h2>
+            <p className="text-xl pt-4 text-slate-800 bg-transparent">
+              Got a question or proposal, or just want to say hello? I'll try my best to get back to you!
+            </p>
+            <div className="lg:w-[90%] w-full mx-auto flex flex-col items-center mt-8">
+              <textarea rows={8} placeholder="Write your message" className="w-full bg-transparent font-normal text-slate-600 placeholder:font-normal placeholder:text-slate-600 border-b border-slate-600 resize-none focus:outline-none focus:placeholder:text-teal-600 focus:border-teal-600 focus:text-teal-500"/>
+              <button className="flex items-center justify-center space-x-4 mt-12 bg-gradient-to-r from-teal-600 to-teal-900 rounded-lg px-8 py-3 text-teal-50 shadow-2xl">
+                <p>Shoot</p> <MoveRight className="w-8 h-auto"/>
+              </button>
+            </div>
+          </div>
         </div>
       </main>
       <footer className="w-full py-3 items-center justify-center text-center bg-slate-900 text-sm text-white/70 tracking-wide">
